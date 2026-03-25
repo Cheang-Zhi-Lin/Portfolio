@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects | Junior Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="site-logo" href="index.html">Junior Dev</a>
+            <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation">Menu</button>
+            <nav class="site-navigation" id="siteNavigation">
+                <a href="index.html">Home</a>
+                <a class="active-link" href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <a class="resume-button" href="resume.html">Resume</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-intro-section">
+            <div class="container page-intro">
+                <p class="small-label">Project archive</p>
+                <h1>My Projects</h1>
+                <p class="page-intro-text">
+                    A collection of practice projects where I build layouts and features using
+                    HTML, CSS, JavaScript, PHP, and modern deployment tools.
+                </p>
+            </div>
+        </section>
+
+        <section class="projects-section">
+            <div class="container">
+                <div class="projects-grid">
+                    <article class="project-card large-project-card">
+                        <img src="assets/images/project-dashboard.svg" alt="Dashboard style portfolio project preview">
+                        <div class="project-content">
+                            <div class="tag-row">
+                                <span>HTML</span>
+                                <span>CSS</span>
+                                <span>JS</span>
+                            </div>
+                            <h2>Personal Website</h2>
+                            <p>
+                                A custom-built digital identity project focused on modern layout design,
+                                spacing, and smooth front-end interactions.
+                            </p>
+                            <a href="index.html">View Live Page</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <img src="assets/images/project-calculator.svg" alt="Calculator project preview">
+                        <div class="project-content">
+                            <div class="tag-row">
+                                <span>HTML</span>
+                                <span>JS</span>
+                            </div>
+                            <h2>Simple Calculator</h2>
+                            <p>
+                                A beginner JavaScript practice project that focuses on event listeners
+                                and number operations in the browser.
+                            </p>
+                            <a href="contact.html">Ask About This Project</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <img src="assets/images/project-contact.svg" alt="Contact form project preview">
+                        <div class="project-content">
+                            <div class="tag-row">
+                                <span>HTML</span>
+                                <span>JS</span>
+                            </div>
+                            <h2>Static Contact Form</h2>
+                            <p>
+                                A GitHub Pages friendly contact section that validates input in JavaScript
+                                and opens the visitor's email app without needing a backend server.
+                            </p>
+                            <a href="contact.html">Try The Form</a>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <img src="assets/images/project-journal.svg" alt="Journal project preview">
+                        <div class="project-content">
+                            <div class="tag-row">
+                                <span>HTML</span>
+                                <span>Learning</span>
+                            </div>
+                            <h2>Learning Journal</h2>
+                            <p>
+                                A simple website idea for tracking weekly study progress, coding notes,
+                                and lessons learned while improving technical skills.
+                            </p>
+                            <a href="about.html">Read My Journey</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="stack-section">
+            <div class="container stack-grid">
+                <div>
+                    <h2>Technical Stack</h2>
+                    <p>
+                        Building strong fundamentals first helps me understand how each part of a website
+                        works together before moving into more advanced tools.
+                    </p>
+                </div>
+
+                <div class="stack-badges">
+                    <div class="stack-badge">HTML5</div>
+                    <div class="stack-badge">CSS3</div>
+                    <div class="stack-badge">JavaScript</div>
+                    <div class="stack-badge">PHP Basics</div>
+                    <div class="stack-badge">PostgreSQL</div>
+                    <div class="stack-badge">GitHub Pages</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <div>
+                <p class="footer-brand">Junior Dev</p>
+                <p class="footer-text">&copy; <span id="footerYear"></span> Junior Dev. Built with HTML, CSS, JavaScript, and GitHub Pages.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/Cheang-Zhi-Lin" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | Junior Dev</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-row">
+            <a class="site-logo" href="index.html">Junior Dev</a>
+            <button class="menu-button" id="menuButton" type="button" aria-label="Open navigation">Menu</button>
+            <nav class="site-navigation" id="siteNavigation">
+                <a href="index.html">Home</a>
+                <a href="projects.html">Projects</a>
+                <a href="about.html">About</a>
+                <a class="active-link" href="contact.html">Contact</a>
+            </nav>
+            <a class="resume-button" href="resume.html">Resume</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="contact-page-section">
+            <div class="container contact-grid">
+                <div class="contact-left-panel">
+                    <p class="small-label">Status: open for collaboration</p>
+                    <h1>Let's Talk!</h1>
+                    <p class="contact-intro-text">
+                        Have a question or want to talk about coding? I'd love to connect,
+                        learn from others, and hear about interesting ideas or projects.
+                    </p>
+
+                    <div class="social-card-row">
+                        <a class="social-card" href="https://github.com/Cheang-Zhi-Lin" target="_blank" rel="noreferrer">GitHub</a>
+                        <a class="social-card" href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+                    </div>
+
+                    <div class="contact-side-image">
+                        <img src="assets/images/circuit-board.svg" alt="Circuit board themed illustration">
+                    </div>
+                </div>
+
+                <div class="contact-form-card">
+                    <div class="message-box success-message" id="contactSuccessMessage" hidden>
+                        Your email app should open now. If it does not, copy my email address from the note below and send the message manually.
+                    </div>
+
+                    <form class="contact-form" id="contactForm" data-contact-email="cheangzhilin@gmail.com">
+                        <div class="two-column-inputs">
+                            <div class="input-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" placeholder="John Doe">
+                            </div>
+
+                            <div class="input-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="john@example.com">
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="8" placeholder="Hi, I'd love to talk about..."></textarea>
+                        </div>
+
+                        <button class="primary-button full-width-button" type="submit">Send Message</button>
+                        <p class="form-note">This static version uses your visitor's email app instead of PHP. Later, you can connect it to Formspree, Netlify Forms, or Supabase.</p>
+                        <p class="form-note">Current contact email: cheangzhilin@gmail.com</p>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-row">
+            <div>
+                <p class="footer-brand">Junior Dev</p>
+                <p class="footer-text">&copy; <span id="footerYear"></span> Junior Dev. Built with HTML, CSS, JavaScript, and GitHub Pages.</p>
+            </div>
+            <div class="footer-links">
+                <a href="https://github.com/Cheang-Zhi-Lin" target="_blank" rel="noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LinkedIn</a>
+                <a href="contact.html">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts/script.js"></script>
+</body>
+</html>

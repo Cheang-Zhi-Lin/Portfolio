@@ -28,6 +28,13 @@ if (menuButton && siteNavigation) {
     });
 }
 
+// This adds the current year into the footer automatically.
+const footerYear = document.getElementById("footerYear");
+
+if (footerYear) {
+    footerYear.textContent = new Date().getFullYear();
+}
+
 // These are the elements that will animate when they scroll into view.
 const scrollAnimationItems = document.querySelectorAll(
     ".hero-text, .hero-image-card, .page-intro, .tool-card, .info-card, .callout-card, .project-card, .wide-info-card, .side-info-card, .mini-skill-card, .about-image-card, .contact-left-panel, .contact-form-card, .beyond-code-text, .beyond-code-images, .quote-box, .resume-card"
@@ -66,10 +73,13 @@ scrollAnimationItems.forEach(function (item, index) {
 });
 
 const contactForm = document.getElementById("contactForm");
+const contactSuccessMessage = document.getElementById("contactSuccessMessage");
 
 // This checks the form before it is submitted.
 if (contactForm) {
     contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
         const nameInput = document.getElementById("name");
         const emailInput = document.getElementById("email");
         const messageInput = document.getElementById("message");
@@ -79,7 +89,6 @@ if (contactForm) {
         const messageValue = messageInput.value.trim();
 
         if (nameValue === "" || emailValue === "" || messageValue === "") {
-            event.preventDefault();
             alert("Please fill in all fields before sending your message.");
             return;
         }
@@ -87,8 +96,22 @@ if (contactForm) {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(emailValue)) {
-            event.preventDefault();
             alert("Please enter a valid email address.");
+            return;
         }
+
+        const contactEmail = contactForm.dataset.contactEmail;
+        const emailSubject = encodeURIComponent("Portfolio Website Contact from " + nameValue);
+        const emailBody = encodeURIComponent(
+            "Name: " + nameValue + "\n" +
+            "Email: " + emailValue + "\n\n" +
+            "Message:\n" + messageValue
+        );
+
+        if (contactSuccessMessage) {
+            contactSuccessMessage.hidden = false;
+        }
+
+        window.location.href = "mailto:" + contactEmail + "?subject=" + emailSubject + "&body=" + emailBody;
     });
 }
