@@ -929,3 +929,34 @@ main section {
         transition: none;
     }
 }
+
+.project-title-link {
+    display: inline-block;
+    position: relative;
+    color: var(--text-color);
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.project-title-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 100%;
+    height: 2px;
+    background: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+}
+
+.project-title-link:hover,
+.project-title-link:focus-visible {
+    color: var(--accent-color);
+    transform: scale(1.05);
+}
+
+.project-title-link:hover::after,
+.project-title-link:focus-visible::after {
+    transform: scaleX(1);
+}

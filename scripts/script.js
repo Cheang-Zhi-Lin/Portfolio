@@ -72,13 +72,45 @@ scrollAnimationItems.forEach(function (item, index) {
     scrollAnimationObserver.observe(item);
 });
 
+// Replace these two placeholder values with your real Supabase details.
+const supabaseProjectUrl = "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE";
+const supabaseAnonKey = "PASTE_YOUR_SUPABASE_ANON_PUBLIC_KEY_HERE";
+const supabaseTableName = "contact_messages";
+
 const contactForm = document.getElementById("contactForm");
 const contactSuccessMessage = document.getElementById("contactSuccessMessage");
+const contactErrorMessage = document.getElementById("contactErrorMessage");
+const contactSubmitButton = document.getElementById("contactSubmitButton");
 
-// This checks the form before it is submitted.
+function hideContactMessages() {
+    if (contactSuccessMessage) {
+        contactSuccessMessage.hidden = true;
+    }
+
+    if (contactErrorMessage) {
+        contactErrorMessage.hidden = true;
+    }
+}
+
+function showContactError(messageText) {
+    if (contactErrorMessage) {
+        contactErrorMessage.textContent = messageText;
+        contactErrorMessage.hidden = false;
+    }
+}
+
+function showContactSuccess(messageText) {
+    if (contactSuccessMessage) {
+        contactSuccessMessage.textContent = messageText;
+        contactSuccessMessage.hidden = false;
+    }
+}
+
+// This checks the form and sends the data to Supabase.
 if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
+    contactForm.addEventListener("submit", async function (event) {
         event.preventDefault();
+        hideContactMessages();
 
         const nameInput = document.getElementById("name");
         const emailInput = document.getElementById("email");
@@ -89,29 +121,62 @@ if (contactForm) {
         const messageValue = messageInput.value.trim();
 
         if (nameValue === "" || emailValue === "" || messageValue === "") {
-            alert("Please fill in all fields before sending your message.");
+            showContactError("Please fill in all fields before sending your message.");
             return;
         }
 
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (!emailPattern.test(emailValue)) {
-            alert("Please enter a valid email address.");
+            showContactError("Please enter a valid email address.");
             return;
         }
 
-        const contactEmail = contactForm.dataset.contactEmail;
-        const emailSubject = encodeURIComponent("Portfolio Website Contact from " + nameValue);
-        const emailBody = encodeURIComponent(
-            "Name: " + nameValue + "\n" +
-            "Email: " + emailValue + "\n\n" +
-            "Message:\n" + messageValue
-        );
-
-        if (contactSuccessMessage) {
-            contactSuccessMessage.hidden = false;
+        if (
+            supabaseProjectUrl === "PASTE_YOUR_SUPABASE_PROJECT_URL_HERE" ||
+            supabaseAnonKey === "PASTE_YOUR_SUPABASE_ANON_PUBLIC_KEY_HERE"
+        ) {
+            showContactError("Please add your real Supabase Project URL and anon public key inside scripts/script.js before using the contact form.");
+            return;
         }
 
-        window.location.href = "mailto:" + contactEmail + "?subject=" + emailSubject + "&body=" + emailBody;
+        if (contactSubmitButton) {
+            contactSubmitButton.disabled = true;
+            contactSubmitButton.textContent = "Sending...";
+        }
+
+        const requestUrl = supabaseProjectUrl + "/rest/v1/" + supabaseTableName;
+        const requestBody = {
+            name: nameValue,
+            email: emailValue,
+            message: messageValue
+        };
+
+        try {
+            const response = await fetch(requestUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    apikey: supabaseAnonKey,
+                    Authorization: "Bearer " + supabaseAnonKey,
+                    Prefer: "return=minimal"
+                },
+                body: JSON.stringify(requestBody)
+            });
+
+            if (!response.ok) {
+                throw new Error("Supabase insert failed.");
+            }
+
+            contactForm.reset();
+            showContactSuccess("Your message was sent successfully and saved in Supabase.");
+        } catch (error) {
+            showContactError("Something went wrong while sending your message. Please check your Supabase URL, anon public key, and insert policy.");
+        } finally {
+            if (contactSubmitButton) {
+                contactSubmitButton.disabled = false;
+                contactSubmitButton.textContent = "Send Message";
+            }
+        }
     });
 }

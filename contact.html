@@ -20,7 +20,6 @@
                 <a href="about.html">About</a>
                 <a class="active-link" href="contact.html">Contact</a>
             </nav>
-            <a class="resume-button" href="resume.html">Resume</a>
         </div>
     </header>
 
@@ -47,10 +46,14 @@
 
                 <div class="contact-form-card">
                     <div class="message-box success-message" id="contactSuccessMessage" hidden>
-                        Your email app should open now. If it does not, copy my email address from the note below and send the message manually.
+                        Your message was sent successfully and stored in the database.
                     </div>
 
-                    <form class="contact-form" id="contactForm" data-contact-email="cheangzhilin@gmail.com">
+                    <div class="message-box error-message" id="contactErrorMessage" hidden>
+                        Something went wrong while sending your message.
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
                         <div class="two-column-inputs">
                             <div class="input-group">
                                 <label for="name">Name</label>
@@ -68,9 +71,9 @@
                             <textarea id="message" name="message" rows="8" placeholder="Hi, I'd love to talk about..."></textarea>
                         </div>
 
-                        <button class="primary-button full-width-button" type="submit">Send Message</button>
-                        <p class="form-note">This static version uses your visitor's email app instead of PHP. Later, you can connect it to Formspree, Netlify Forms, or Supabase.</p>
-                        <p class="form-note">Current contact email: cheangzhilin@gmail.com</p>
+                        <button class="primary-button full-width-button" type="submit" id="contactSubmitButton">Send Message</button>
+                        <p class="form-note">This version sends your contact form data to Supabase.</p>
+                        <p class="form-note">Open <strong>scripts/script.js</strong> and replace the two Supabase placeholder values with your real project URL and anon public key.</p>
                     </form>
                 </div>
             </div>
